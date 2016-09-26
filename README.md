@@ -1,4 +1,4 @@
-# NodeJS Presentation
+# Node in small places - Presentation
 
 ## Tips for running this presentation
 
@@ -10,14 +10,12 @@ If you're not familiar with RevealJS the following tips might prove helpful. Try
 
 ## View the presentation
 
-[http://cjus.github.io/nodejs-presentation](http://cjus.github.io/nodejs-presentation)
+[http://cjus.github.io/nodejs-presentation](http://cjus.github.io/node-in-small-places-presentation)
 
 ## Print the presentation
 
 Append `/?print-pdf/#/` to the end of the presentation URL and print or send to PDF.
 
 ## View the presentation code
-
-This presentation is open sourced. Feel free to fork the presentation and use it as the basis for sharing this with others. My presentation notes are included, but feel free to add you own.
 
 If you'd like to contribute to this presentation simply fork it and issue a pull request.
