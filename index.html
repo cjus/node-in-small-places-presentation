@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Node in small places</title>
+  <meta name="description" content="Node in small places - Presentation">
+  <meta name="author" content="Carlos Justiniano">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" href="css/theme/night.css" id="theme">
+  <link rel="stylesheet" href="css/presentation.css">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+    if (window.location.search.match(/print-pdf/gi)) {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = 'css/print/pdf.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- To print: http://localhost:8000/?print-pdf/#/ -->
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Title slide  ----------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="cube" data-transition-speed="medium">
+  <img style="border: 0; padding: 0; width: 50%;" src="images/pizero.jpg">
+
+  <h2>Node in small places</h2>
+  <p>
+    <small>Presented by <a href="http://cjus.me" target="_blank">Carlos Justiniano</a> /
+      <a href="https://www.meetup.com/NYC-JavaScript-Flatiron/events/234120050/" target="_blank">NYC JavaScript @ Flatiron</a> /
+      <a href="http://twitter.com/cjus" target="_blank">@cjus</a> / ver: 1.0.0</small>
+  </p>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- About me  -------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="medium">
+  <h3>About me</h3>
+
+  <ul>
+    <li>Carlos Justiniano, NYC-JavaScript-Flatiron founder</li>
+    <li>First IoT project in 2001</li>
+    <li>Ten years later I learned about NodeJS</li>
+    <li>Developed Node applications in production  use since 2011</li>
+    <li>Chief Architect at Flywheel, note: we're hiring!</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- What we'll cover ------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>What we'll cover</h3>
+  <ul>
+    <li>Setting up Node on Single Board Computers (SBCs)</li>
+    <li>SBCs communicating with other computers and controlling other devices such as LCDs</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- What we won't cover ---------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>What we won't cover</h3>
+  <ul>
+    <li>We won't cover other popular languages for controlling SBCs, such as C/C++ and Python</li>
+    <li>We can't cover the full breath of what's out there</li>
+    <li>Think of this presentation as a quick introduction</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- We will deep dive ------------------------------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>We will deep dive!</h3>
+  <ul>
+    <li>But, you won't need to feverishly take notes</li>
+    <li>Because this presentation and accompanying how-tos are posted in its own github repo</li>
+    <li>https://github.com/cjus/node-in-small-places-presentation</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Pi Zero ---------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>An SBC - a close up look</h3>
+  <img style="border: 0; padding: 0; width: 70%;" src="images/pizero.jpg">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Pi Zero Specs ---------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Raspberry Pi Zero</h3>
+  <ul>
+    <li>Broadcom BCM2835 ARM11 core processing running at 1GHz</li>
+    <li>512K RAM</li>
+    <li>Features a Micro-SD card, a mini-HDMI socket for 1080p60 video, Micro-USB sockets for data and power</li>
+    <li>Tiny! at only 65mm x 30mm x 5mm</li>
+    <li>Runs Linux</li>
+    <li>Costs, only $5 dollars!</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Contact ---------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="cube" data-transition-speed="slow">
+  <h3>Contact</h3>
+  <ul>
+    <li>cjus on Twitter and Github</li>
+    <li>Email: cjus34@gmail.com</li>
+    <li>About: http://cjus.me</li>
+  </ul>
+</section>
+
+</div>
+</div>
+
+<!-- reveal -->
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+<script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/none/fade/none
+
+    // Parallax scrolling
+    //    parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    //    parallaxBackgroundSize: '2100px 900px',
+
+    leap: {
+      //gestureDelay: 1000,
+      //pointerTolerance: 40,
+      naturalSwipe: true,    // Invert swipe gestures
+      pointerOpacity: 0.25,      // Set pointer opacity to 0.5
+      pointerColor: '#FFFFFF' // color pointer
+    },
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: 'lib/js/classList.js', condition: function() {
+        return !document.body.classList;
+      } },
+      { src: 'plugin/markdown/marked.js', condition: function() {
+        return !!document.querySelector('[data-markdown]');
+      } },
+      { src: 'plugin/markdown/markdown.js', condition: function() {
+        return !!document.querySelector('[data-markdown]');
+      } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() {
+        hljs.initHighlightingOnLoad();
+      } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() {
+        return !!document.body.classList;
+      } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() {
+        return !!document.body.classList;
+      } },
+      //{ src: 'plugin/leap/leap-0.2.0.js', async: true }
+    ]
+  });
+
+//  Reveal.addEventListener('slidechanged', function(event) {
+//    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+//    if (event.indexh === 1) {
+//      canvasDemo01.start();
+//    } else {
+//      canvasDemo01.stop();
+//    }
+//    console.log(event.indexh);
+//  });
+
+  // Reveal.addEventListener('slidechanged', function(event) {
+  //   var notes = event.currentSlide.querySelector(".notes");
+  //   if (notes) {
+  //     console.info(notes.innerHTML.replace(/\n\s+/g,'\n'));
+  //   }
+  // });
+</script>
+</body>
+</html>
