@@ -55,7 +55,6 @@
   </aside>
 </section>
 
-
 <!-- ------------------------------------------------------------------------------------------------------------------>
 <!-- About me  -------------------------------------------------------------------------------------------------------->
 <!-- ------------------------------------------------------------------------------------------------------------------>
@@ -75,13 +74,30 @@
 </section>
 
 <!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Acronyms and Vernacular ------------------------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Acronyms and Vernacular</h3>
+  <ul>
+    <li><b>SoC</b>: System on a Chip. Integrates system components into a single chip. Think: processor, GPU, memory and other interface layers for IO</li>
+    <li><b>PCB</b>: Printed Circuit Board. Integrates components into a convenient package</li>
+    <li><b>SBC</b>: Single Board Computer. Contains an SoC and integrates other components and interfaces into a single printed circuit board</li>
+    <li><b>IoT</b>: Internet of Things. Networked devices built using the above tech</li>
+    <li><b>Microcontroller</b>: Differs from a microprocessor (CPU) in that unlike a CPU it also features memory and other SoC components</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
 <!-- What we'll cover ------------------------------------------------------------------------------------------------->
 <!-- ------------------------------------------------------------------------------------------------------------------>
 <section data-transition="fade" data-transition-speed="slow">
   <h3>What we'll cover</h3>
   <ul>
     <li>Setting up Node on Single Board Computers (SBCs)</li>
-    <li>SBCs communicating with other computers and controlling other devices such as LCDs</li>
+    <li>SBCs communicating with other computers and controlling other devices such as LCDs and Lights</li>
   </ul>
   <aside class="notes" data-markdown="">
     ---
@@ -96,7 +112,7 @@
   <ul>
     <li>We won't cover other popular languages for controlling SBCs, such as C/C++ and Python</li>
     <li>We can't cover the full breath of what's out there</li>
-    <li>Think of this presentation as a quick introduction</li>
+    <li>Think of this presentation as a reasonibly quick introduction</li>
   </ul>
   <aside class="notes" data-markdown="">
     ---
@@ -110,9 +126,114 @@
   <h3>We will deep dive!</h3>
   <ul>
     <li>But, you won't need to feverishly take notes</li>
-    <li>Because this presentation and accompanying how-tos are posted in its own github repo</li>
+    <li>This presentation and accompanying how-tos are posted in its own github repo</li>
     <li>https://github.com/cjus/node-in-small-places-presentation</li>
   </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Why bother? ------------------------------------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Why bother?</h3>
+  <ul>
+    <li>Because we can! SBCs are far more approachable than you might expect</li>
+    <li>Low cost facilitates getting started</li>
+    <li>They're also a great way to learn about Linux and machine configuration</li>
+    <li>The resource restrictions get you thinking about how to optimize your applications</li>
+    <li>That generally helps you create better software</li>
+    <li>And ...</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- You knowledge scales --------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h2>Your knowledge scales!</h2>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- How we got here -------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>How we got here</h3>
+  <ul>
+    <li>The industry benefited from advancements in the creation of mobile devices</li>
+    <li>Demand for mobile devices reduced the cost via economies of scale</li>
+    <li>Educators leveraged this opportunity to make these devices great teaching tools</li>
+    <li>People like us fuel demand for these devices!</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Let's begin our deep dive ---------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h2>Let's begin our deep dive</h2>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- How SBC's differ from our other computers ------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>How SBC's differ from our other computers</h3>
+  <ul>
+    <li>No keyboard, mouse or screen</li>
+    <li>Memory is severely limited</li>
+    <li>No hard disk, storage is often a microSD card with limited write cycles</li>
+    <li>The saying "you get what you pay for" definitely applies here</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- How SBC's differ from our other computers ------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>How SBC's differ from our other computers</h3>
+  <p>One of the key differences with SBCs is that you get general purpose input output pins, referred to as GPIO pins</p>
+  <img style="border: 0; padding: 0; width: 70%;" src="images/gpio-pins.jpg">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- GPIO Pins -------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>GPIO Pins</h3>
+  <p>Allow you to connect to other devices such as sensors, motors, switches and other controllers</p>
+  <img style="border: 0; padding: 0; width: 70%;" src="images/header-with-connectors.jpg">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Robotic building blocks ------------------------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h4>And those devices are some of the building blocks of robotics</h4>
+  <img style="border: 0; padding: 0; width: 70%;" src="images/robotics.jpg">
   <aside class="notes" data-markdown="">
     ---
   </aside>
@@ -122,7 +243,7 @@
 <!-- Pi Zero ---------------------------------------------------------------------------------------------------------->
 <!-- ------------------------------------------------------------------------------------------------------------------>
 <section data-transition="fade" data-transition-speed="slow">
-  <h3>An SBC - a close up look</h3>
+  <h2>An SBC - a close up look</h2>
   <img style="border: 0; padding: 0; width: 70%;" src="images/pizero.jpg">
   <aside class="notes" data-markdown="">
     ---
@@ -135,12 +256,515 @@
 <section data-transition="fade" data-transition-speed="slow">
   <h3>Raspberry Pi Zero</h3>
   <ul>
-    <li>Broadcom BCM2835 ARM11 core processing running at 1GHz</li>
+    <li>Broadcom BCM2835 ARM11 core processor running at 1GHz</li>
     <li>512K RAM</li>
     <li>Features a Micro-SD card, a mini-HDMI socket for 1080p60 video, Micro-USB sockets for data and power</li>
     <li>Tiny! at only 65mm x 30mm x 5mm</li>
     <li>Runs Linux</li>
     <li>Costs, only $5 dollars!</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- DEMO: GPIO Pins -------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h2>DEMO!</h2>
+  <h4>Using GPIO pins</h4>
+  <p>This is like the hello world program of embedded systems ;-)</p>
+  <img style="border: 0; padding: 0; width: 100%;" src="images/ledboard.JPG">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- DEMO: GPIO Pins -------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h2>DEMO!</h2>
+  <h4>Using GPIO pins</h4>
+  <img style="border: 0; padding: 0; width: 80%;" src="images/ledboard-wiring.png">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Software Setup --------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Software Setup</h3>
+  <ul>
+    <li>First we copy a Linux image onto a microSD card.</li>
+    <li>Then we install NodeJS</li>
+    <li>And then we'll see how our light demos actually work!</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- OS setup --------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>OS Setup</h3>
+  <img style="border: 0; padding: 0; width: 80%;" src="images/card-readers.JPG">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- OS setup --------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>OS Setup</h3>
+  <p>Sorry, but we won't do this process live, because it can take up to 30 minutes to complete</p>
+  <ul>
+    <li>Detailed How-To: https://github.com/cjus/hydra-cluster/wiki/Setting-up-a-Pi-Zero</li>
+    <li>Download OS from: https://www.raspberrypi.org/downloads/raspbian/</li>
+    <li>Insert fresh microSD in drive and type: </li>
+  </ul>
+  <!--@formatter:off-->
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">$ sudo dd if=./2016-05-27-raspbian-jessie-lite.img of=/dev/disk2
+</code></pre>
+  <!--@formatter:on-->
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- OS setup --------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>OS Setup</h3>
+  <ul>
+    <li>When the image is copied you can find a boot aread of the disk</li>
+    <li>You'll just need to edit two files to establish networking</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- OS setup --------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>OS Setup</h3>
+  <img style="border: 0; padding: 0; width: 80%;" src="images/raspbian-flash.png">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- OS setup --------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>OS Setup</h3>
+  <p>These setting will allow us to network our Pi over USB</p>
+  <ul>
+    <li>Edit config.txt by appending <b>dtoverlay=dwc2</b> to the end of the file and saving it.</li>
+    <li>Edit cmdline.txt by inserting <b>modules-load=dwc2,g_ether</b> after rootwait. Make sure that the file only contains a single line with no newlines.</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- OS setup --------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Let's connect</h3>
+  <ul>
+    <li>Safely eject your SD card and insert it into your Pi</li>
+    <li>Connect the USB cable to your Pi to provide power and connectivity</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- OS setup --------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>OS Setup</h3>
+  <p>You should be able to ping it...</p>
+  <!--@formatter:off-->
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">$ ping raspberrypi.local
+PING raspberrypi.local (169.254.2.0): 56 data bytes
+64 bytes from 169.254.2.0: icmp_seq=1 ttl=64 time=0.588 ms
+64 bytes from 169.254.2.0: icmp_seq=2 ttl=64 time=0.651 ms
+64 bytes from 169.254.2.0: icmp_seq=3 ttl=64 time=0.576 ms
+64 bytes from 169.254.2.0: icmp_seq=4 ttl=64 time=0.626 ms
+</code></pre>
+  <!--@formatter:on-->
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- OS setup --------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>SSH</h3>
+  <p>If the former works you can SSH into your Pi with a default user of <b>pi</b> and a password of <b>raspberry</b></p>
+  <!--@formatter:off-->
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">$ ssh pi@raspberrypi.local
+The authenticity of host 'raspberrypi.local (fe80::854b:2ab:d95f:6ff2%en7)' can't be established.
+ECDSA key fingerprint is SHA256:dlH/03cQ77GcNYo6pygUl33GHp6698+c+wSlVKUuLBs.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'raspberrypi.local,fe80::854b:2ab:d95f:6ff2%en7' (ECDSA) to the list of known hosts.
+pi@raspberrypi.local's password:
+</code></pre>
+  <!--@formatter:on-->
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- DEMO: Connecting to RPi ------------------------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h2>DEMO!</h2>
+  <h4>Connecting to RPi</h4>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Installing Node! ------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Installing Node!</h3>
+  <!--@formatter:off-->
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">$ sudo apt-get install wget
+$ mkdir nodejs
+$ cd nodejs
+$ wget https://nodejs.org/dist/v6.5.0/node-v6.5.0-linux-armv6l.tar.xz
+$ tar -xvf node-v6.5.0-linux-armv6l.tar.xz
+$ cd node-v6.5.0-linux-armv6l/
+$ sudo cp -R * /usr/local/
+</code></pre>
+  <!--@formatter:on-->
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Installing Node! ------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>You should now have Node installed</h3>
+  <!--@formatter:off-->
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">$ cd ~
+$ node --version
+v6.5.0
+</code></pre>
+  <!--@formatter:on-->
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Code DEMO: How our light demos work ----------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h2>CODE DEMO!</h2>
+  <h4>How our light demos work</h4>
+  <ul>
+    <li>We created a folder for our light demos: <b>mkdir light-demos; cd light-demos; npm init</b></li>
+    <li>We just installed the pi-blaster NPM package: <b>npm install pi-blaster</b></li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- sine.js ---------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>sine.js</h3>
+  <!--@formatter:off-->
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">const piblaster = require('pi-blaster.js');
+const LED_PIN = 4;
+
+let y = 0;
+let intervalID = setInterval(() => {
+  let s = Math.abs(Math.sin(y/10));
+  piblaster.setPwm(LED_PIN, s);
+  y += 1;
+  if (y > 180) {
+    y = 0;
+  }
+}, 100);
+
+process.on('SIGINT', () => {
+  clearInterval(intervalID);
+  piblaster.setPwm(LED_PIN, 0);
+  setInterval(() => {
+    process.exit();
+  }, 1000);
+});
+</code></pre>
+  <!--@formatter:on-->
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- sos.js ---------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>sos.js</h3>
+  <!--@formatter:off-->
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">const piblaster = require('pi-blaster.js');
+const LED_PIN = 4;
+const LED_ON = 1;
+const LED_OFF = 0;
+const SOS_PATTERN = [
+  LED_ON, LED_ON, LED_ON,
+  LED_OFF,
+  LED_ON, LED_OFF, LED_ON, LED_OFF, LED_ON,
+  LED_OFF, LED_OFF,
+  LED_ON, LED_ON, LED_ON,
+  LED_OFF, LED_OFF, LED_OFF, LED_OFF, LED_OFF, LED_OFF];
+
+let i = 0;
+let intervalID = setInterval(() => {
+  piblaster.setPwm(LED_PIN, SOS_PATTERN[i]);
+
+  if (i > SOS_PATTERN.length - 1) {
+    i = 0;
+  } else {
+    i += 1;
+  }
+}, 500);
+
+process.on('SIGINT', () => {
+  clearInterval(intervalID);
+  piblaster.setPwm(LED_PIN, 0);
+  setInterval(() => {
+    process.exit();
+  }, 1000);
+});
+</code></pre>
+  <!--@formatter:on-->
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- DEMO: Fancier display -------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h2>DEMO!</h2>
+  <h4>Fancier display</h4>
+  <img style="border: 0; padding: 0; width: 50%;" src="images/scroll-phat.jpg">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Even more displays ----------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Even more displays...</h3>
+  <p>We'll see even more displays later in this presentation</p>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Connecting SBCs -------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Connecting SBCs</h3>
+  <p>Playing with single board computers is really cool.</p>
+  <p>Getting them to communicate with  one another is even cooler!</p>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Messaging options ------------------------------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Messaging options</h3>
+  <p>There are a lot of ways to handle communication:</p>
+  <ul>
+    <li>Express based APIs</li>
+    <li>Web sockets</li>
+    <li>Using an intermediary such as Rabbitmq, MQTT or Redis</li>
+    <li>Over USB using serial communication</li>
+    <li>And even by creating a communication bus via wires to GPIO pins</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Messaging options ------------------------------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Messaging options</h3>
+  <p>In our next demos we'll look at <b>serial communication</b> and messaging via <b>Redis pub/sub</b> and ExpressJS APIs</p>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Introducing the Hydra Cluster ------------------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Introducing the Hydra Cluster</h3>
+  <ul>
+    <li>Here at Flywheel we've built a set of libraries we call Hydra. Hydra allows us to build, deploy, and monitor microservices to the cloud</li>
+    <li>During the past month I built a 16 core cluster to demonstrate Hydra running on low cost hardware doing microservice-y things</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Hydra Cluster ---------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h2>Hydra Cluster</h2>
+  <img style="border: 0; padding: 0; width: 50%;" src="images/bare-cluster-side-front.jpg">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Hydra Cluster ---------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Hydra Cluster</h3>
+  <ul>
+    <li>If you're interested in this sort of thing see the Github Repo for tech info: https://github.com/cjus/hydra-cluster</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Communication revisited ------------------------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Communication revisited</h3>
+  <p>Let's get back to communication</p>
+  <p>Using the Hydra Cluster we'll examine:</p>
+  <ul>
+    <li>Serial communication</li>
+    <li>Redis Pub/Sub</li>
+    <li>ExpressJS-based APIs</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Serial Communication  -------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Serial Communication</h3>
+  <ul>
+    <li>I built a temperature display using an Arduino microcontroller, a temperature sensor and a 16x2 LCD display</li>
+  </ul>
+  <img style="border: 0; padding: 0; width: 50%;" src="images/temp-mon-completed.jpg">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Serial Communication  -------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Serial Communication</h3>
+  <ul>
+    <li>The device is connected to a Raspberry Pi using serial over USB</li>
+    <li>A Node microservice running on a Pi recieves the serial data and stores it for later use</li>
+    <li>The node service also renders the uptime and temperature data on a connected 3.5 inch LCD display</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Code DEMO: Communication over Serial ----------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h2>CODE DEMO!</h2>
+  <h4>Communication over Serial</h4>
+  <ul>
+    <li>First we'll look at the code for the Arduino microcontroller</li>
+    <li>It's not JavaScript, but it will be easy to follow</li>
+    <li>Then we'll look at how the node app recieves serial data via node-serial NPM package</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- sos.js ---------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>serial.js</h3>
+  <!--@formatter:off-->
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">{}
+</code></pre>
+  <!--@formatter:on-->
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+
+
+
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Inside Node ------------------------------------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Inside Node</h3>
+  <ul>
+    <li>Node and V8 are compiled for the underlying processor - which is great!</li>
+    <li>You can start Node with flags intended to tweak V8 memory usage.</li>
+    <li>Future versions of Node may optimize for IoT - perhaps MS Chakra?</li>
+    <li>Node on ARM processors: https://nodesource.com/blog/node-and-arm/</li>
   </ul>
   <aside class="notes" data-markdown="">
     ---
