@@ -738,13 +738,153 @@ process.on('SIGINT', () => {
 
 
 <!-- ------------------------------------------------------------------------------------------------------------------>
-<!-- serial.js ---------------------------------------------------------------------------------------------------------->
+<!-- Arduino Serial Code ---------------------------------------------------------------------------------------------->
 <!-- ------------------------------------------------------------------------------------------------------------------>
 <section data-transition="fade" data-transition-speed="slow">
-  <h3>serial.js</h3>
+  <h3>Arduino Serial Code</h3>
   <!--@formatter:off-->
-    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">{}
-</code></pre>
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+#include <OneWire.h>
+#include <Wire.h>
+#include <LiquidCrystal.h>
+
+#define LCD_WIDTH 16
+#define LCD_HEIGHT 2
+
+OneWire ds(11);  // on pin 11
+LiquidCrystal lcd(12, 2, 4, 5, 6, 7);
+
+void setup() {
+  Serial.begin(9600);
+  lcd.begin(LCD_WIDTH, LCD_HEIGHT);
+  lcd.clear();
+  lcd.setCursor(1, 0);
+  lcd.print("HYDRA  CLUSTER");
+}
+
+void loop() {
+  displayUptime();
+  displayTemperature();
+  delay(1000);
+}
+
+void displayUptime() {
+  char buf[LCD_WIDTH];
+  unsigned int days = 0;
+  unsigned int hours = 0;
+  unsigned int mins = 0;
+  unsigned int secs = 0;
+
+  secs = millis() / 1000;
+
+  mins = secs / 60;
+  hours = mins / 60;
+  days = hours / 24;
+
+  secs = secs - (mins * 60);
+  mins = mins - (hours * 60);
+  hours = hours - (days * 24);
+
+  sprintf(buf, "%02d %02d:%02d:%02d", days, hours, mins, secs);
+  lcd.setCursor(0, 1);
+  lcd.print(buf);
+  Serial.write(buf);
+  Serial.write('|');
+}
+
+void displayTemperature() {
+  int HighByte, LowByte, TReading, SignBit, Tc_100, Tf_100, Whole, Fract;
+  char buf[LCD_WIDTH];
+
+  byte i, sensor;
+  byte present = 0;
+  byte data[12];
+  byte addr[8];
+
+  ds.reset_search();
+  if (!ds.search(addr)) {
+    lcd.setCursor(0,0);
+    lcd.print("No more addr.");
+    ds.reset_search();
+    delay(250);
+    return;
+  }
+
+  if (OneWire::crc8(addr, 7) != addr[7]) {
+    lcd.setCursor(0,0);
+    lcd.print("CRC not valid");
+    return;
+  }
+
+  if (addr[0] != 0x28) {
+    lcd.setCursor(0,0);
+    lcd.print("Not a DS18B20.");
+    return;
+  }
+
+  ds.reset();
+  ds.select(addr);
+  ds.write(0x44, 1);         // start conversion, with parasite power on at the end
+
+  present = ds.reset();
+  ds.select(addr);
+  ds.write(0xBE);         // Read Scratchpad
+
+  for (i = 0; i < 9; i++) {
+    data[i] = ds.read();
+  }
+
+  LowByte = data[0];
+  HighByte = data[1];
+  TReading = (HighByte << 8) + LowByte;
+  SignBit = TReading & 0x8000;  // test most sig bit
+  if (SignBit) { // negative
+    TReading = (TReading ^ 0xffff) + 1; // 2's comp
+  }
+  Tc_100 = (6 * TReading) + TReading / 4;    // multiply by (100 * 0.0625) or 6.25
+  Tf_100 = ((Tc_100 * 9.0) / 5.0  + 32 * 100) / 100;
+
+  sprintf(buf, "%dF", Tf_100);
+  int pos = LCD_WIDTH - strlen(buf);
+  lcd.setCursor(pos, 1);
+  lcd.print(buf);
+  Serial.write(buf);
+  Serial.write('\n');
+}
+  </code></pre>
+  <!--@formatter:on-->
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Node Serial Code ------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Node Serial Code</h3>
+  <!--@formatter:off-->
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+const SerialPort = require('serialport');
+
+let portName = '/dev/ttyUSB0';
+
+let myPort = new SerialPort(portName, {
+  baudRate: 9600,
+  dataBits: 8,
+  parity: 'none',
+  stopBits: 1,
+  flowControl: false
+});
+
+myPort.on('open', () => {
+  console.log('Open Connection');
+});
+
+myPort.on('data', (data) => {
+  console.log(data.toString());
+});
+    </code></pre>
   <!--@formatter:on-->
   <aside class="notes" data-markdown="">
     ---
