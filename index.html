@@ -127,7 +127,7 @@
   <ul>
     <li>But, you won't need to feverishly take notes</li>
     <li>This presentation and accompanying how-tos are posted in its own github repo</li>
-    <li>https://github.com/cjus/node-in-small-places-presentation</li>
+    <li><b>https://github.com/cjus/node-in-small-places-presentation</b></li>
   </ul>
   <aside class="notes" data-markdown="">
     ---
@@ -135,10 +135,10 @@
 </section>
 
 <!-- ------------------------------------------------------------------------------------------------------------------>
-<!-- So, why bother with SBSs? ---------------------------------------------------------------------------------------->
+<!-- So, why bother with SBCs? ---------------------------------------------------------------------------------------->
 <!-- ------------------------------------------------------------------------------------------------------------------>
 <section data-transition="fade" data-transition-speed="slow">
-  <h3>So, why bother with SBSs?</h3>
+  <h3>So, why bother with SBCs?</h3>
   <ul>
     <li>Because we can! SBCs are far more approachable than you might expect</li>
     <li>Low cost facilitates getting started</li>
@@ -315,7 +315,7 @@
 <section data-transition="fade" data-transition-speed="slow">
   <h3>Software Setup</h3>
   <ul>
-    <li>First we copy a Linux image onto a microSD card.</li>
+    <li>First we copy a Linux image onto a microSD card</li>
     <li>Then we install NodeJS</li>
     <li>And finally we'll see how our light demos actually work!</li>
   </ul>
@@ -437,10 +437,6 @@ PING raspberrypi.local (169.254.2.0): 56 data bytes
   <p>If the former works you can SSH into your Pi with a default user of <b>pi</b> and a password of <b>raspberry</b></p>
   <!--@formatter:off-->
     <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">$ ssh pi@raspberrypi.local
-The authenticity of host 'raspberrypi.local (fe80::854b:2ab:d95f:6ff2%en7)' can't be established.
-ECDSA key fingerprint is SHA256:dlH/03cQ77GcNYo6pygUl33GHp6698+c+wSlVKUuLBs.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'raspberrypi.local,fe80::854b:2ab:d95f:6ff2%en7' (ECDSA) to the list of known hosts.
 pi@raspberrypi.local's password:
 </code></pre>
   <!--@formatter:on-->
@@ -682,7 +678,7 @@ process.on('SIGINT', () => {
 <section data-transition="fade" data-transition-speed="slow">
   <h3>Hydra Cluster</h3>
   <ul>
-    <li>If you're interested in this sort of thing see the Github Repo for tech info: https://github.com/cjus/hydra-cluster</li>
+    <li>If you're interested in this sort of thing see the Github Repo for tech info: <b>https://github.com/cjus/hydra-cluster</b></li>
   </ul>
   <aside class="notes" data-markdown="">
     ---
@@ -727,8 +723,8 @@ process.on('SIGINT', () => {
   <h3>Serial Communication</h3>
   <ul>
     <li>The device is connected to a Raspberry Pi using serial over USB</li>
-    <li>A Node microservice running on a Pi recieves the serial data and stores it for later use</li>
-    <li>The node service also renders the uptime and temperature data on a connected 3.5 inch LCD display</li>
+    <li>A Node microservice running on a Pi recieves the serial data and sends it to another microservice via messaging</li>
+    <li>A service also renders the uptime and temperature data on a connected 3.5 inch LCD display</li>
   </ul>
   <aside class="notes" data-markdown="">
     ---
@@ -1211,8 +1207,8 @@ module.exports = new Handler();
   <ul>
     <li>Hydra cluster is still under development</li>
     <li>Follow the repo for new developments and code releases, You'll find detailed how-tos to get you started</li>
-    <li>https://github.com/cjus/hydra-cluster</li>
-    <li>Follow and reach out to me via Twitter if you have questions @cjus</li>
+    <li><b>https://github.com/cjus/hydra-cluster</b></li>
+    <li>Follow and reach out to me via Twitter if you have questions <b>@cjus</b></li>
   </ul>
   <aside class="notes" data-markdown="">
     ---
