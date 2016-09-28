@@ -62,7 +62,7 @@
   <h3>About me</h3>
 
   <ul>
-    <li>Carlos Justiniano, NYC-JavaScript-Flatiron founder</li>
+    <li>Carlos Justiniano, NYC JavaScript @ Flatiron founder</li>
     <li>First IoT project in 2001</li>
     <li>Ten years later I learned about NodeJS</li>
     <li>Developed Node applications in production  use since 2011</li>
@@ -112,7 +112,7 @@
   <ul>
     <li>We won't cover other popular languages for controlling SBCs, such as C/C++ and Python</li>
     <li>We can't cover the full breath of what's out there</li>
-    <li>Think of this presentation as a reasonibly quick introduction</li>
+    <li>Think of this presentation as a reasonably quick introduction</li>
   </ul>
   <aside class="notes" data-markdown="">
     ---
@@ -143,8 +143,7 @@
     <li>Because we can! SBCs are far more approachable than you might expect</li>
     <li>Low cost facilitates getting started</li>
     <li>They're also a great way to learn about Linux and machine configuration</li>
-    <li>The resource restrictions get you thinking about how to optimize your applications</li>
-    <li>That generally helps you create better software</li>
+    <li>The resource restrictions get you thinking about how to optimize your applications, that generally helps you create better software</li>
     <li>And ...</li>
   </ul>
   <aside class="notes" data-markdown="">
@@ -258,10 +257,10 @@
   <ul>
     <li>Broadcom BCM2835 ARM11 core processor running at 1GHz</li>
     <li>512K RAM</li>
-    <li>Features a Micro-SD card, a mini-HDMI socket for 1080p60 video, Micro-USB sockets for data and power</li>
-    <li>Tiny! at only 65mm x 30mm x 5mm</li>
+    <li>Features a Micro-SD card slot, a mini-HDMI socket for 1080p60 video, Micro-USB sockets for data and power</li>
+    <li>Tiny! at only 2.5 inches by just over 1 inch</li>
     <li>Runs Linux</li>
-    <li>Costs, only $5 dollars!</li>
+    <li>Cost: only $5 dollars!</li>
   </ul>
   <aside class="notes" data-markdown="">
     ---
@@ -301,7 +300,7 @@
   <ul>
     <li>First we copy a Linux image onto a microSD card.</li>
     <li>Then we install NodeJS</li>
-    <li>And then we'll see how our light demos actually work!</li>
+    <li>And finally we'll see how our light demos actually work!</li>
   </ul>
   <aside class="notes" data-markdown="">
     ---
@@ -345,7 +344,7 @@
 <section data-transition="fade" data-transition-speed="slow">
   <h3>OS Setup</h3>
   <ul>
-    <li>When the image is copied you can find a boot aread of the disk</li>
+    <li>When the image is copied you can find a boot area of the disk</li>
     <li>You'll just need to edit two files to establish networking</li>
   </ul>
   <aside class="notes" data-markdown="">
@@ -369,7 +368,7 @@
 <!-- ------------------------------------------------------------------------------------------------------------------>
 <section data-transition="fade" data-transition-speed="slow">
   <h3>OS Setup</h3>
-  <p>These setting will allow us to network our Pi over USB</p>
+  <p>These settings will allow us to network our Pi over USB</p>
   <ul>
     <li>Edit config.txt by appending <b>dtoverlay=dwc2</b> to the end of the file and saving it.</li>
     <li>Edit cmdline.txt by inserting <b>modules-load=dwc2,g_ether</b> after rootwait. Make sure that the file only contains a single line with no newlines.</li>
@@ -719,6 +718,15 @@ process.on('SIGINT', () => {
   </aside>
 </section>
 
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Serial Communication  -------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <img style="border: 0; padding: 0; width: 80%;" src="images/lcd-displays.jpg">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
 
 <!-- ------------------------------------------------------------------------------------------------------------------>
 <!-- Code DEMO: Communication over Serial ----------------------------------------------------------------------------->
@@ -906,6 +914,220 @@ myPort.on('data', (data) => {
 </section>
 
 <!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Controlling the cluster using HTTP and sockets ------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Controlling the cluster using<br/>HTTP and sockets</h3>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- MCP, the master control program ---------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h2>MCP, the master control program</h2>
+  <ul>
+    <li>One of the cluster computers is running an ExpressJS microservice which serves up a ReactJS web app called the MCP</li>
+    <li>The MCP webapp makes REST calls to the MCP service based on the commands we'll issue</li>
+    <li>The MCP service in-turn publishes messages via a socket to Redis for Pub/Sub messaging</li>
+    <li>A "pilights" service running on a Raspberry Pi Zero listens for messages which instruct it on how to animate a light display</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Let's have a look at this MCP program ---------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Let's have a look at this MCP program</h3>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- MCP -------------------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <img style="border: 0; padding: 0; width: 100%;" src="images/mcp.png">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- MCP console ------------------------------------------------------------------------------------------------------>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <img style="border: 0; padding: 0; width: 100%;" src="images/mcp-console.png">
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- Let's talk code! ------------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Let's talk code!</h3>
+  <ul>
+    <li>The Hydra Cluster uses an NPM library called Hydra-core which we use here at Flywheel to create Microservices</li>
+    <li>As we'll see - the library is super easy to use</li>
+    <li>It will be open sourced later this year</li>
+    <li>If you want early access - come see me after the talk!</li>
+  </ul>
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- pilight service code --------------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Pi Lights Service Code</h3>
+  <!--@formatter:off-->
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+/**
+* @name Service
+* @description This is the service entry point
+*/
+const http = require('http');
+const cluster = require('cluster');
+const os = require('os');
+const hydra = require('@flywheelsports/hydra');
+const Utils = require('@flywheelsports/jsutils');
+const version = require('./package.json').version;
+const handler = require('./handler');
+
+let config = require('@flywheelsports/config');
+config.init('./config/config.json')
+  .then(() => {
+    config.version = version;
+    config.hydra.serviceVersion = version;
+
+    /**
+    * Handling for process invocation as a process master or child process.
+    */
+    if (config.cluster !== true) {
+      initWorker();
+    } else {
+      if (cluster.isMaster) {
+        const numWorkers = config.processes || os.cpus().length;
+        console.log(`${config.hydra.serviceName} (v.${config.version})`);
+        console.log(`Using environment: ${config.environment}`);
+        console.log('info', `Master cluster setting up ${numWorkers} workers...`);
+
+        for (let i = 0; i < numWorkers; i++) {
+          cluster.fork();
+        }
+
+        /**
+         * @param {object} worker - worker process object
+         */
+        cluster.on('online', (worker) => {
+          console.log(`Worker ${worker.process.pid} is online`);
+        });
+
+        /**
+         * @param {object} worker - worker process object
+         * @param {number} code - process exit code
+         * @param {number} signal - signal that caused the process shutdown
+         */
+        cluster.on('exit', (worker, code, signal) => {
+          console.log(`Worker ${worker.process.pid} died with code ${code}, and signal: ${signal}`);
+          console.log('Starting a new worker');
+          cluster.fork();
+        });
+      } else {
+        initWorker();
+      }
+    }
+  });
+
+/**
+* @name initWorker
+* @summary Initialize the core process functionality.
+*/
+function initWorker() {
+  /**
+  * Initialize hydra.
+  */
+  hydra.init(config.hydra)
+    .then(() => {
+      return hydra.registerService();
+    })
+    .then((serviceInfo) => {
+      let logEntry = `Starting hydra-router service ${serviceInfo.serviceName} on port ${serviceInfo.servicePort}`;
+      hydra.sendToHealthLog('info', logEntry);
+      console.log(logEntry);
+
+      hydra.on('log', (entry) => {
+        console.log('>>>> ', entry);
+      });
+
+      let channel = `iotnode:${serviceInfo.serviceName}`;
+      console.log('listening on channel', channel);
+      hydra.openSubscriberChannel(channel);
+      hydra.subscribeToChannel(channel, function(message) {
+        console.log('recieve message', message);
+        handler.process(message);
+      });
+    })
+    .catch((err) => {
+      console.log('err', err);
+    });
+}
+    </code></pre>
+  <!--@formatter:on-->
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<!-- pilight service handler code ------------------------------------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------------------------------------------>
+<section data-transition="fade" data-transition-speed="slow">
+  <h3>Pi Lights Service Handler Code</h3>
+  <!--@formatter:off-->
+    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+/**
+* @name Handler
+* @description Handle incoming hydra message
+*/
+const hydra = require('@flywheelsports/hydra');
+const Utils = require('@flywheelsports/jsutils');
+const XProcess = require('xprocess');
+
+class Handler {
+  constructor() {
+    this.xProcess = null;
+  }
+
+  process(message) {
+    console.log('message.bdy.cmd', message.bdy.cmd);
+    if (this.xProcess) {
+        this.xProcess.close();
+    }
+    this.xProcess = XProcess.createClient();
+    this.xProcess.run('python', [`${message.bdy.cmd}.py`]);
+  }
+}
+
+module.exports = new Handler();
+    </code></pre>
+  <!--@formatter:on-->
+  <aside class="notes" data-markdown="">
+    ---
+  </aside>
+</section>
+
+<!-- ------------------------------------------------------------------------------------------------------------------>
 <!-- Inside Node ------------------------------------------------------------------------------------------------------>
 <!-- ------------------------------------------------------------------------------------------------------------------>
 <section data-transition="fade" data-transition-speed="slow">
@@ -926,7 +1148,7 @@ myPort.on('data', (data) => {
 <!-- ------------------------------------------------------------------------------------------------------------------>
 <section data-transition="fade" data-transition-speed="slow">
   <h3>Next Steps</h3>
-  <p>Hopefully this presentation has given you a sense of how to use Node is small places.</p>
+  <p>Hopefully this presentation has given you a sense of how to use Node in small places.</p>
   <p>Want to learn more? Checkout these cool projects:</p>
   <ul>
     <li>JohnnyFive: https://github.com/rwaldron/johnny-five</li>
