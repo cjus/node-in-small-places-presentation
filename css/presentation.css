@@ -1,3 +1,12 @@
+.reveal li {
+  line-height: 3.4rem;
+}
+
+.reveal pre code {
+  padding: 14px;
+  border-radius: 8px;
+}
+
 .red {
   color: red;
 }
